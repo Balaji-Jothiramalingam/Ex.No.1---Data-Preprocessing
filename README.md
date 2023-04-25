@@ -24,18 +24,72 @@ Another aspect is that the data set should be formatted in such a way that more 
 
 
 ## ALGORITHM:
+###Step 1:
 Importing the libraries
+### Step 2:
 Importing the dataset
+### Step 3:
 Taking care of missing data
+### Step 4:
 Encoding categorical data
+### Step 5:
 Normalizing the data
+### Step 6:
 Splitting the data into test and train
 
 ## PROGRAM:
-/Write your code here/
+```
+Developed By : Balaji J
+Reg No: 212221243001
+```
+```py
+import pandas as pd
 
+df = pd.read_csv("Churn_Modelling.csv")
+
+df.head() df.info()
+
+x = df.iloc[:,:-1].values y= df.iloc[:,1].values x y
+
+df.describe()
+
+from sklearn.preprocessing import LabelEncoder le = LabelEncoder()
+
+df1 = df.copy()
+
+df1["Geography"] = le.fit_transform(df1["Geography"]) df1["Gender"] = le.fit_transform(df1["Gender"])
+
+from sklearn.preprocessing import StandardScaler from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+
+df1[["CreditScore","Geography","Age","Tenure","Balance","NumOfProducts","EstimatedSalary"]] = pd.DataFrame(scaler.fit_transform(df1[["CreditScore","Geography","Age","Tenure","Balance","NumOfProducts","EstimatedSalary"]]))
+
+df1.describe()
+
+X = df1[["CreditScore","Geography","Gender","Age","Tenure","Balance","NumOfProducts","HasCrCard","IsActiveMember","EstimatedSalary"]].values print(X)
+
+y = df1.iloc[:,-1].values print(y)
+
+from sklearn.model_selection import train_test_split X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+print(X_train)
+
+print("Size of X_train: ",len(X_train))
+
+print(X_test) print("Size of X_test: ",len(X_test))
+```
 ## OUTPUT:
-/ Show the result/
-
+### Head:
+![head](https://github.com/Thenmozhi-Palanisamy/Ex.No.1---Data-Preprocessing/raw/main/NN1.png)
+### Info:
+![info](https://github.com/Thenmozhi-Palanisamy/Ex.No.1---Data-Preprocessing/raw/main/NN2.png)
+### Before Normalization:
+![before](https://github.com/Thenmozhi-Palanisamy/Ex.No.1---Data-Preprocessing/raw/main/NN3.png)
+### After Normilzation:
+![after](https://github.com/Thenmozhi-Palanisamy/Ex.No.1---Data-Preprocessing/raw/main/NN4.png)
+### Size of X & Y:
+![size](https://github.com/Thenmozhi-Palanisamy/Ex.No.1---Data-Preprocessing/raw/main/NN4.png)
+![size](https://github.com/Thenmozhi-Palanisamy/Ex.No.1---Data-Preprocessing/raw/main/NN4.png)
 ## RESULT
-/Type your result here/
+Thus,the program to perform Data preprocessing in a data set downloaded from Kaggle is implemented successfully..
